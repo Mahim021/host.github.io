@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Margarine&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="./home-style.css" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-item active" data-page="0">HOME</div>
+        <div class="nav-item" data-page="1">ABOUT</div>
+        <div class="nav-item" data-page="2">WORK</div>
+        <div class="nav-item" data-page="3">EXPERIENCE</div>
+        <div class="nav-item talk-button" data-page="4">LET'S TALK</div>
+    </nav>
+
+    <!-- Side Navigation Panels -->
+    <div class="side-panel-left" id="leftPanel">
+        <div class="side-label" id="leftLabel"></div>
+    </div>
+
+    <div class="side-panel-right" id="rightPanel">
+        <div class="side-label" id="rightLabel"></div>
+    </div>
+
+    <!-- Bottom Contact Panel -->
+    <div class="bottom-panel" id="bottomPanel">
+        <div class="panel-drag-handle">
+            <div class="drag-indicator"></div>
+            <h2 class="panel-title">LET'S TALK</h2>
+        </div>
+        <div class="panel-content">
+            <div class="contact-section">
+                <div class="contact-intro">
+                    <h3>Get in Touch</h3>
+                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                </div>
+                
+                <div class="contact-methods">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>mahim@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+880 123 456 7890</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links-section">
+                    <h4>Connect With Me</h4>
+                    <div class="social-links-large">
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="message-form">
+                    <h4>Send a Message</h4>
+                    <form>
+                        <input type="text" placeholder="Your Name" />
+                        <input type="email" placeholder="Your Email" />
+                        <textarea placeholder="Your Message" rows="4"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <!-- Home Section -->
+            <section class="page-section">
+                <div class="home-section">
+                    <div class="profile-image"></div>
+                    <div class="home-content">
+                        <h1>MD. ARIFUL ALAM MAHIM</h1>
+                        <h2>FRONTEND DEVELOPER</h2>
+                        
+                        <div class="get-to-know">
+                            GET TO KNOW ME
+                            <i class="fa-regular fa-file-lines cv-icon"></i>
+                        </div>
+                        
+                        <div class="join-me">JOIN ME ON</div>
+                        <div class="social-icons">
+                            <i class="fa-brands fa-linkedin social-icon"></i>
+                            <i class="fa-brands fa-facebook social-icon"></i>
+                            <i class="fa-brands fa-instagram social-icon"></i>
+                            <i class="fa-brands fa-github social-icon"></i>
+                            <i class="fa-brands fa-x-twitter social-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="page-section">
+                <div class="section-content">
+                    <h1>ABOUT</h1>
+                    <p>Learn more about my journey and skills</p>
+                </div>
+            </section>
+
+            <!-- Work Section -->
+            <section class="page-section">
+                <div class="section-content">
+                    <h1>WORK</h1>
+                    <p>Explore my latest projects and creations</p>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="page-section">
+                <div class="section-content">
+                    <h1>EXPERIENCE</h1>
+                    <p>My professional journey and expertise</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="drag-hint">← Drag or swipe to navigate →</div>
+
+    <script src="./home-script.js"></script>
+</body>
+</html>
