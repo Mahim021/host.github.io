@@ -155,28 +155,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Mouse wheel navigation
-let wheelTimeout;
-carouselWrapper.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    
-    clearTimeout(wheelTimeout);
-    wheelTimeout = setTimeout(() => {
-        if (e.deltaY > 0 || e.deltaX > 0) {
-            // Scroll down or right
-            if (currentPage < totalPages - 1) {
-                currentPage += 1;
-                setPositionByIndex();
-            }
-        } else {
-            // Scroll up or left
-            if (currentPage > 0) {
-                currentPage -= 1;
-                setPositionByIndex();
-            }
-        }
-    }, 50);
-}, { passive: false });
+// Mouse wheel navigation disabled - use side panels or navbar for navigation
 
 // Handle window resize
 window.addEventListener('resize', () => {
@@ -382,3 +361,35 @@ setPositionByIndex = function() {
 
 // Initialize labels
 updateSidePanelLabels();
+
+// CTA Button Handlers
+const downloadCvBtn = document.getElementById('downloadCvBtn');
+const getInTouchBtn = document.getElementById('getInTouchBtn');
+
+if (downloadCvBtn) {
+    downloadCvBtn.addEventListener('click', () => {
+        // Trigger CV download
+        const cvUrl = '../Assets/Resume_of_Ariful_Alam.pdf';
+        const link = document.createElement('a');
+        link.href = cvUrl;
+        link.download = 'Resume_of_Ariful_Alam.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
+
+if (getInTouchBtn) {
+    getInTouchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Open Let's Talk panel
+        previousPage = currentPage;
+        if (bottomPanel) {
+            bottomPanel.classList.add('expanded');
+            panelExpanded = true;
+            updateActiveNav();
+            updateSidePanelLabels();
+        }
+    });
+}
