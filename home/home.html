@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Margarine&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="./home-style.css" />
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -41,7 +45,7 @@
                     <h3>Get in Touch</h3>
                     <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
                 </div>
-                
+
                 <div class="contact-methods">
                     <div class="contact-item">
                         <i class="fa-solid fa-envelope"></i>
@@ -50,7 +54,7 @@
                             <p>arifulalam7865@gmail.com</p>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <i class="fa-solid fa-phone"></i>
                         <div class="contact-details">
@@ -58,7 +62,7 @@
                             <p>+8801746-734906</p>
                         </div>
                     </div>
-                    
+
                     <div class="contact-item">
                         <i class="fa-solid fa-location-dot"></i>
                         <div class="contact-details">
@@ -67,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="social-links-section">
                     <h4>Connect With Me</h4>
                     <div class="social-links-large">
@@ -78,14 +82,21 @@
                         <a href="https://x.com/ariful21_a" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="message-form">
                     <h4>Send a Message</h4>
-                    <form>
-                        <input type="text" placeholder="Your Name" />
-                        <input type="email" placeholder="Your Email" />
-                        <textarea placeholder="Your Message" rows="4"></textarea>
-                        <button type="submit">Send Message</button>
+                    <form id="contactForm">
+                        <input type="text" name="name" placeholder="Your Name" required />
+                        <input type="email" name="email" placeholder="Your Email" required />
+                        <input type="text" name="client_email" placeholder="Client's Email (if referring someone)" />
+                        <textarea name="introduction" placeholder="Brief Introduction or Reason for Contact" rows="3"></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                        <!-- Hidden fields for FormSubmit configuration -->
+                        <input type="hidden" name="_subject" value="New Portfolio Message!" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input type="hidden" name="_template" value="table" />
+                        <button type="submit" id="sendBtn">Send Message</button>
+                        <p id="formStatus" class="form-status"></p>
                     </form>
                 </div>
             </div>
@@ -100,13 +111,12 @@
                 <div class="home-section">
                     <!-- Status Badge -->
                     <div class="status-badge">
-                        <i class="fa-solid fa-circle"></i>
-                        Available for opportunities
+                        <i class="fa-solid fa-circle"></i> Available for opportunities
                     </div>
 
                     <!-- Main Heading -->
                     <h1 class="home-name">Md. Ariful Alam Mahim</h1>
-                    
+
                     <!-- Tagline with highlight -->
                     <h2 class="home-tagline">
                         Crafting <span class="highlight-text">seamless digital experiences</span> with modern web technologies
@@ -114,9 +124,7 @@
 
                     <!-- Role Description -->
                     <p class="home-description">
-                        Full-Stack Developer & UI/UX Enthusiast based in Dhaka, Bangladesh. 
-                        Passionate about building scalable applications with exceptional user experiences 
-                        and contributing to the developer community through open-source projects.
+                        Full-Stack Developer & UI/UX Enthusiast based in Dhaka, Bangladesh. Passionate about building scalable applications with exceptional user experiences and contributing to the developer community through open-source projects.
                     </p>
 
                     <!-- Info Grid -->
@@ -224,7 +232,7 @@
                     <div class="about-content">
                         <div class="education-section">
                             <h2 class="about-heading">Education</h2>
-                            
+
                             <div class="education-timeline">
                                 <div class="edu-item">
                                     <div class="edu-icon">
@@ -233,8 +241,7 @@
                                     <div class="edu-details">
                                         <h3>Bachelor of Science in Computer Science & Engineering</h3>
                                         <h4>Khulna University of Engineering & Technology (KUET)</h4>
-                                        <p>Comprehensive study in software engineering, data structures, algorithms, 
-                                        database systems, and web technologies with hands-on experience in modern development practices.</p>
+                                        <p>Comprehensive study in software engineering, data structures, algorithms, database systems, and web technologies with hands-on experience in modern development practices.</p>
                                     </div>
                                 </div>
 
@@ -356,9 +363,8 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Project Aladin</h3>
-                                    <p>A food ordering Android application built with Flutter, featuring a modern and intuitive 
-                                    user interface for seamless food browsing, ordering, and payment. Includes real-time order 
-                                    tracking, cart management, and smooth navigation between different food categories.</p>
+                                    <p>A food ordering Android application built with Flutter, featuring a modern and intuitive user interface for seamless food browsing, ordering, and payment. Includes real-time order tracking, cart management, and smooth
+                                        navigation between different food categories.</p>
                                     <div class="project-tags">
                                         <span class="tag">Flutter</span>
                                         <span class="tag">Dart</span>
@@ -380,9 +386,8 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Football Tournament Manager</h3>
-                                    <p>A database-driven web application for managing football tournaments. Built with HTML, CSS, 
-                                    and PHP, using XAMPP server and MySQL database. Features dynamic SQL queries to fetch and display 
-                                    tournament data including teams, matches, standings, and statistics with an intuitive admin panel.</p>
+                                    <p>A database-driven web application for managing football tournaments. Built with HTML, CSS, and PHP, using XAMPP server and MySQL database. Features dynamic SQL queries to fetch and display tournament data including
+                                        teams, matches, standings, and statistics with an intuitive admin panel.</p>
                                     <div class="project-tags">
                                         <span class="tag">PHP</span>
                                         <span class="tag">MySQL</span>
@@ -408,8 +413,7 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Full-Stack Web Application</h3>
-                                    <p>Built a comprehensive web platform using MERN stack with user authentication, 
-                                    real-time updates, and responsive design for seamless user experience.</p>
+                                    <p>Built a comprehensive web platform using MERN stack with user authentication, real-time updates, and responsive design for seamless user experience.</p>
                                     <div class="project-tags">
                                         <span class="tag">React</span>
                                         <span class="tag">Node.js</span>
@@ -437,8 +441,7 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Laravel Web Platform</h3>
-                                    <p>Developed a robust web application using Laravel framework with MVC architecture, 
-                                    featuring admin panel, user management, and database optimization.</p>
+                                    <p>Developed a robust web application using Laravel framework with MVC architecture, featuring admin panel, user management, and database optimization.</p>
                                     <div class="project-tags">
                                         <span class="tag">Laravel</span>
                                         <span class="tag">PHP</span>
@@ -466,8 +469,7 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Machine Learning Project</h3>
-                                    <p>Created an ML model using Python for data analysis and prediction, implementing 
-                                    various algorithms and data visualization techniques.</p>
+                                    <p>Created an ML model using Python for data analysis and prediction, implementing various algorithms and data visualization techniques.</p>
                                     <div class="project-tags">
                                         <span class="tag">Python</span>
                                         <span class="tag">ML</span>
@@ -495,8 +497,7 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Flutter Cross-Platform App</h3>
-                                    <p>Designed and developed a beautiful cross-platform mobile application using Flutter 
-                                    with state management, custom animations, and API integration.</p>
+                                    <p>Designed and developed a beautiful cross-platform mobile application using Flutter with state management, custom animations, and API integration.</p>
                                     <div class="project-tags">
                                         <span class="tag">Flutter</span>
                                         <span class="tag">Dart</span>
@@ -523,8 +524,7 @@
                             <div class="project-content">
                                 <div class="project-info-box">
                                     <h3>Open Source Contributions</h3>
-                                    <p>Active contributor to various open-source projects, collaborating with developers 
-                                    worldwide and improving codebases with bug fixes and feature implementations.</p>
+                                    <p>Active contributor to various open-source projects, collaborating with developers worldwide and improving codebases with bug fixes and feature implementations.</p>
                                     <div class="project-tags">
                                         <span class="tag">Git</span>
                                         <span class="tag">GitHub</span>
@@ -557,9 +557,7 @@
                                 <div class="timeline-date">Present</div>
                                 <h3>Self-Driven Projects</h3>
                                 <h4>Independent Developer</h4>
-                                <p>Building personal projects across multiple technologies including MERN stack, 
-                                Laravel, Flutter, and Machine Learning. Focusing on creating practical applications 
-                                while mastering modern development practices and design patterns.</p>
+                                <p>Building personal projects across multiple technologies including MERN stack, Laravel, Flutter, and Machine Learning. Focusing on creating practical applications while mastering modern development practices and design patterns.</p>
                                 <ul class="timeline-highlights">
                                     <li>Developed 10+ personal projects showcasing various tech stacks</li>
                                     <li>Implemented complex features like authentication, real-time updates, and API integrations</li>
@@ -574,9 +572,7 @@
                                 <div class="timeline-date">Ongoing</div>
                                 <h3>Academic Projects</h3>
                                 <h4>Computer Science Student</h4>
-                                <p>Completed various academic projects as part of coursework, applying theoretical 
-                                knowledge to practical implementations. Collaborated with peers on team projects 
-                                and gained experience in software development lifecycle.</p>
+                                <p>Completed various academic projects as part of coursework, applying theoretical knowledge to practical implementations. Collaborated with peers on team projects and gained experience in software development lifecycle.</p>
                                 <ul class="timeline-highlights">
                                     <li>Built data structures and algorithms implementations</li>
                                     <li>Created database-driven applications with proper schema design</li>
@@ -591,9 +587,8 @@
                                 <div class="timeline-date">2023 - Present</div>
                                 <h3>Freelance Development</h3>
                                 <h4>Freelancer</h4>
-                                <p>Taking on freelance opportunities to build web and mobile applications for clients. 
-                                Delivering custom solutions while managing project requirements, timelines, and client 
-                                communication.</p>
+                                <p>Taking on freelance opportunities to build web and mobile applications for clients. Delivering custom solutions while managing project requirements, timelines, and client communication.
+                                </p>
                                 <ul class="timeline-highlights">
                                     <li>Delivered responsive web applications meeting client specifications</li>
                                     <li>Maintained clear communication and met project deadlines</li>
@@ -664,5 +659,7 @@
     </div>
 
     <script src="./home-script.js"></script>
+    <script src="./api-integration.js"></script>
 </body>
+
 </html>

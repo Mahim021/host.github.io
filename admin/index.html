@@ -1,0 +1,120 @@
+<!--
+    Admin Dashboard - Portfolio Management Interface
+    
+    Purpose:
+    - Secure admin interface for managing portfolio content
+    - Login system with JWT authentication
+    - CRUD operations for projects and experiences
+    - View and manage contact form submissions
+    
+    Structure:
+    - Login Page: Email/password authentication form
+    - Dashboard: 
+      * Sidebar navigation (Projects, Experiences, Messages)
+      * Main content area with data grids
+      * Modal dialogs for add/edit operations
+    
+    JavaScript: admin-script.js (handles all API communication)
+    Styles: admin-style.css (modern dark theme UI)
+    Backend: Connects to http://localhost:5000/api
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Portfolio</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Custom admin styles -->
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+
+<body>
+    <!-- ============ LOGIN PAGE ============ -->
+    <!-- Shown initially, hidden after successful login -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <h1><i class="fas fa-lock"></i> Admin Login</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p id="loginError" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardPage" class="dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-section="projects">
+                    <i class="fas fa-briefcase"></i> Projects
+                </a>
+                <a href="#" class="nav-item" data-section="experiences">
+                    <i class="fas fa-star"></i> Experiences
+                </a>
+                <a href="#" class="nav-item" data-section="messages">
+                    <i class="fas fa-envelope"></i> Messages
+                </a>
+                <a href="#" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <h1 id="sectionTitle">Projects Management</h1>
+                <button id="addNewBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add New
+                </button>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="projectsSection" class="content-section active">
+                <div id="projectsList" class="items-grid"></div>
+            </div>
+
+            <!-- Experiences Section -->
+            <div id="experiencesSection" class="content-section">
+                <div id="experiencesList" class="items-grid"></div>
+            </div>
+
+            <!-- Messages Section -->
+            <div id="messagesSection" class="content-section">
+                <div id="messagesList" class="messages-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Project</h2>
+            <form id="itemForm">
+                <div id="formFields"></div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary">Save</button>
+                    <button type="button" class="btn-secondary cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+
+</html>

@@ -78,7 +78,7 @@ function touchStart(index) {
         startY = event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
         animationID = requestAnimationFrame(animation);
         carouselWrapper.classList.add('no-transition');
-        
+
         // Hide drag hint after first interaction
         if (dragHint) {
             dragHint.style.opacity = '0';
@@ -95,7 +95,7 @@ function touchMove(event) {
         const currentY = event.type.includes('mouse') ? event.pageY : event.touches[0].clientY;
         const diffX = currentX - startX;
         const diffY = currentY - startY;
-        
+
         // Determine if horizontal or vertical swipe
         if (Math.abs(diffX) > Math.abs(diffY)) {
             // Horizontal swipe
@@ -111,20 +111,20 @@ function touchEnd() {
     isDragging = false;
     cancelAnimationFrame(animationID);
     carouselWrapper.classList.remove('no-transition');
-    
+
     const movedBy = currentTranslate - prevTranslate;
-    
+
     // Determine threshold for page change (25% of screen width)
     const threshold = window.innerWidth * 0.25;
-    
+
     if (movedBy < -threshold && currentPage < totalPages - 1) {
         currentPage += 1;
     }
-    
+
     if (movedBy > threshold && currentPage > 0) {
         currentPage -= 1;
     }
-    
+
     setPositionByIndex();
 }
 
@@ -198,14 +198,14 @@ function updateSidePanelLabels() {
         // When Let's Talk is open, show navigation from the underlying page
         const prevPage = previousPage > 0 ? previousPage - 1 : 3;
         leftLabel.textContent = pageNames[prevPage];
-        
+
         const nextPage = previousPage < 3 ? previousPage + 1 : 0;
         rightLabel.textContent = pageNames[nextPage];
     } else {
         // Circular navigation: HOME <-> ABOUT <-> WORK <-> EXPERIENCE <-> HOME
         const prevPage = currentPage === 0 ? 3 : currentPage - 1;
         leftLabel.textContent = pageNames[prevPage];
-        
+
         const nextPage = currentPage === 3 ? 0 : currentPage + 1;
         rightLabel.textContent = pageNames[nextPage];
     }
@@ -249,22 +249,30 @@ if (sidePanelRight) {
 if (bottomPanel && dragHandle) {
     // Drag functionality - only on the drag handle and panel itself
     const handleDragStart = (e) => {
+        // Don't start dragging if clicking on form elements
+        if (e.target.tagName === 'INPUT' ||
+            e.target.tagName === 'TEXTAREA' ||
+            e.target.tagName === 'BUTTON' ||
+            e.target.closest('.message-form')) {
+            return;
+        }
+
         panelDragging = true;
         panelStartY = e.type.includes('mouse') ? e.pageY : e.touches[0].pageY;
         if (e.type.includes('mouse')) {
             e.preventDefault();
         }
     };
-    
+
     dragHandle.addEventListener('mousedown', handleDragStart);
     bottomPanel.addEventListener('mousedown', handleDragStart);
-    
+
     document.addEventListener('mousemove', (e) => {
         if (panelDragging) {
             e.preventDefault();
             const currentY = e.pageY;
             const diffY = panelStartY - currentY;
-            
+
             if (diffY > 50 && !panelExpanded) {
                 // Dragging up - expand panel and save current page
                 previousPage = currentPage;
@@ -283,25 +291,25 @@ if (bottomPanel && dragHandle) {
             }
         }
     });
-    
+
     document.addEventListener('mouseup', () => {
         panelDragging = false;
     });
-    
+
     // Touch support
     const handleTouchStart = (e) => {
         panelDragging = true;
         panelStartY = e.touches[0].pageY;
     };
-    
+
     dragHandle.addEventListener('touchstart', handleTouchStart);
     bottomPanel.addEventListener('touchstart', handleTouchStart);
-    
+
     document.addEventListener('touchmove', (e) => {
         if (panelDragging) {
             const currentY = e.touches[0].pageY;
             const diffY = panelStartY - currentY;
-            
+
             if (diffY > 50 && !panelExpanded) {
                 previousPage = currentPage;
                 bottomPanel.classList.add('expanded');
@@ -318,13 +326,21 @@ if (bottomPanel && dragHandle) {
             }
         }
     });
-    
+
     document.addEventListener('touchend', () => {
         panelDragging = false;
     });
-    
+
     // Click on collapsed panel to expand it
     bottomPanel.addEventListener('click', (e) => {
+        // Don't interfere with form interactions
+        if (e.target.tagName === 'INPUT' ||
+            e.target.tagName === 'TEXTAREA' ||
+            e.target.tagName === 'BUTTON' ||
+            e.target.closest('.message-form')) {
+            return;
+        }
+
         e.stopPropagation();
         if (!panelExpanded) {
             previousPage = currentPage;
@@ -334,7 +350,7 @@ if (bottomPanel && dragHandle) {
             updateSidePanelLabels();
         }
     });
-    
+
     // Close panel when clicking outside
     document.addEventListener('click', (e) => {
         if (panelExpanded && !bottomPanel.contains(e.target)) {
@@ -391,5 +407,76 @@ if (getInTouchBtn) {
             updateActiveNav();
             updateSidePanelLabels();
         }
+    });
+}
+
+// Contact Form Handler with EmailJS
+const contactForm = document.getElementById('contactForm');
+const sendBtn = document.getElementById('sendBtn');
+const formStatus = document.getElementById('formStatus');
+
+// EmailJS Configuration
+// To set up your own EmailJS account:
+// 1. Go to https://www.emailjs.com/ and sign up
+// 2. Add an email service (Gmail)
+// 3. Create an email template with variables: {{from_name}}, {{from_email}}, {{client_email}}, {{introduction}}, {{message}}
+// 4. Replace the IDs below with your own
+
+const EMAILJS_CONFIG = {
+    publicKey: 'YOUR_PUBLIC_KEY', // Get from EmailJS dashboard
+    serviceID: 'YOUR_SERVICE_ID', // e.g., 'service_abc123'
+    templateID: 'YOUR_TEMPLATE_ID' // e.g., 'template_xyz789'
+};
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async(e) => {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(contactForm);
+
+        // Disable button and show loading state
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Sending...';
+        formStatus.textContent = '';
+        formStatus.className = 'form-status';
+
+        try {
+            // Initialize EmailJS (only needed once, but safe to call multiple times)
+            emailjs.init(EMAILJS_CONFIG.publicKey);
+
+            // Prepare template parameters
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                client_email: formData.get('client_email') || 'N/A',
+                introduction: formData.get('introduction') || 'N/A',
+                message: formData.get('message'),
+                to_email: 'arifulalam7865@gmail.com'
+            };
+
+            // Send email using EmailJS
+            const response = await emailjs.send(
+                EMAILJS_CONFIG.serviceID,
+                EMAILJS_CONFIG.templateID,
+                templateParams
+            );
+
+            if (response.status === 200) {
+                formStatus.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+                formStatus.className = 'form-status success';
+                contactForm.reset();
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            console.error('EmailJS Error:', error);
+            formStatus.textContent = 'Failed to send message. Please try again or email directly at arifulalam7865@gmail.com';
+            formStatus.className = 'form-status error';
+        }
+
+        // Re-enable button
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send Message';
     });
 }

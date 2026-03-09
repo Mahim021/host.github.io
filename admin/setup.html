@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Setup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Create Admin Account</h1>
+    <p>Click the button below to create the admin account in MongoDB.</p>
+    <button onclick="createAdmin()">Create Admin Account</button>
+    <div id="result"></div>
+
+    <script>
+        async function createAdmin() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Creating admin account...';
+            resultDiv.className = '';
+
+            try {
+                const response = await fetch('https://api.taptoquit.me/api/auth/setup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.innerHTML = `✅ ${data.message}<br><br>Now you can login with:<br>Email: arifulalam7865@gmail.com<br>Password: admin123`;
+                    resultDiv.className = 'success';
+                } else {
+                    resultDiv.innerHTML = `⚠️ ${data.message}`;
+                    resultDiv.className = 'error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Error: ${error.message}<br>Make sure the backend server is running on port 5000`;
+                resultDiv.className = 'error';
+            }
+        }
+    </script>
+</body>
+
+</html>

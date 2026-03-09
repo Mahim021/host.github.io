@@ -15,7 +15,9 @@ body {
     height: 100vh;
 }
 
+
 /* Navigation Bar */
+
 .navbar {
     position: fixed;
     top: 30px;
@@ -29,11 +31,9 @@ body {
     display: flex;
     gap: 60px;
     z-index: 1000;
-    background-image:
-        linear-gradient(#bdb2a3, #bdb2a3), 
-        linear-gradient(90deg, #888888, #000000);
+    background-image: linear-gradient(#bdb2a3, #bdb2a3), linear-gradient(90deg, #888888, #000000);
     background-origin: border-box;
-    background-clip:padding-box, border-box;
+    background-clip: padding-box, border-box;
 }
 
 .nav-item {
@@ -58,7 +58,8 @@ body {
     left: 0;
     width: 100%;
     height: 2px;
-    background: #000000}
+    background: #000000
+}
 
 .nav-item.talk-button {
     padding-left: 30px;
@@ -83,7 +84,9 @@ body {
     color: #4a4a4a;
 }
 
+
 /* Carousel Container */
+
 .carousel-container {
     width: 100%;
     height: 100vh;
@@ -102,7 +105,9 @@ body {
     transition: none;
 }
 
+
 /* Page Section */
+
 .page-section {
     min-width: 100vw;
     height: 100vh;
@@ -115,7 +120,9 @@ body {
     overflow-x: hidden;
 }
 
+
 /* Home Section */
+
 .home-section {
     display: flex;
     flex-direction: column;
@@ -126,7 +133,9 @@ body {
     max-width: 900px;
 }
 
+
 /* Status Badge */
+
 .status-badge {
     display: inline-flex;
     align-items: center;
@@ -149,11 +158,18 @@ body {
 }
 
 @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
 }
 
+
 /* Main Name */
+
 .home-name {
     font-size: 64px;
     font-weight: 700;
@@ -163,7 +179,9 @@ body {
     margin: 0;
 }
 
+
 /* Tagline */
+
 .home-tagline {
     font-size: 32px;
     font-weight: 400;
@@ -179,7 +197,9 @@ body {
     font-style: italic;
 }
 
+
 /* Description */
+
 .home-description {
     font-family: 'Margarine', sans-serif;
     font-size: 17px;
@@ -189,7 +209,9 @@ body {
     max-width: 750px;
 }
 
+
 /* Info Grid */
+
 .home-info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -242,7 +264,9 @@ body {
     letter-spacing: 0.3px;
 }
 
+
 /* Tech Stack */
+
 .tech-stack {
     width: 100%;
     display: flex;
@@ -286,7 +310,9 @@ body {
     color: #000000;
 }
 
+
 /* CTA Buttons */
+
 .home-cta {
     display: flex;
     gap: 15px;
@@ -332,7 +358,9 @@ body {
     transform: translateY(-3px);
 }
 
+
 /* Social Links */
+
 .home-social {
     display: flex;
     align-items: center;
@@ -374,7 +402,9 @@ body {
     color: #000000;
 }
 
+
 /* Other Sections */
+
 .section-content {
     width: 100%;
     display: flex;
@@ -395,7 +425,9 @@ body {
     color: #5a5a5a;
 }
 
+
 /* Side and Bottom Layers */
+
 .side-panel-left {
     position: fixed;
     left: 0;
@@ -516,6 +548,7 @@ body {
     cursor: grab;
     user-select: none;
     flex-shrink: 0;
+    pointer-events: auto;
 }
 
 .panel-drag-handle:active {
@@ -542,8 +575,8 @@ body {
 .panel-content {
     flex: 1;
     overflow-y: auto;
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: all;
     transition: opacity 0.3s ease;
     padding: 0 60px 40px 60px;
 }
@@ -556,6 +589,8 @@ body {
 .contact-section {
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
+    z-index: 5;
 }
 
 .contact-intro {
@@ -667,6 +702,8 @@ body {
     background: rgba(255, 255, 255, 0.15);
     padding: 30px;
     border-radius: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .message-form h4 {
@@ -695,6 +732,13 @@ body {
     color: #000000;
     outline: none;
     transition: all 0.3s ease;
+    pointer-events: auto;
+    position: relative;
+    z-index: 11;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
 }
 
 .message-form input:focus,
@@ -719,6 +763,7 @@ body {
     letter-spacing: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
 .message-form button:hover {
@@ -726,12 +771,51 @@ body {
     transform: translateY(-2px);
 }
 
+.message-form button:disabled {
+    background: #666666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-status {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Margarine', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background: rgba(34, 197, 94, 0.15);
+    color: #15803d;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.form-status.error {
+    display: block;
+    background: rgba(239, 68, 68, 0.15);
+    color: #b91c1c;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.form-status.info {
+    display: block;
+    background: rgba(59, 130, 246, 0.15);
+    color: #1e40af;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
 .panel-item:hover {
     color: #4a4a4a;
     transform: scale(1.08);
 }
 
+
 /* Drag Hint */
+
 .drag-hint {
     position: fixed;
     bottom: 140px;
@@ -745,11 +829,18 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
+
 /* ==================== ABOUT SECTION ==================== */
+
 .about-section {
     width: 100%;
     max-width: 1000px;
@@ -758,7 +849,9 @@ body {
     gap: 50px;
 }
 
-.about-header, .work-header, .experience-header {
+.about-header,
+.work-header,
+.experience-header {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -923,7 +1016,9 @@ body {
     margin: 0;
 }
 
+
 /* Personal Info Section */
+
 .personal-info-section {
     margin-top: 20px;
 }
@@ -1009,7 +1104,9 @@ body {
     margin: 0;
 }
 
+
 /* ==================== WORK SECTION ==================== */
+
 .work-section {
     width: 100%;
     max-width: 1100px;
@@ -1069,7 +1166,7 @@ body {
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.project-image:hover ~ .project-content {
+.project-image:hover~.project-content {
     transform: translateY(100%);
     opacity: 0;
     pointer-events: none;
@@ -1164,7 +1261,9 @@ body {
     font-size: 14px;
 }
 
+
 /* ==================== EXPERIENCE SECTION ==================== */
+
 .experience-section {
     width: 100%;
     max-width: 900px;
@@ -1345,7 +1444,9 @@ body {
     text-align: center;
 }
 
+
 /* Location Section */
+
 .location-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1388,7 +1489,9 @@ body {
     margin: 0;
 }
 
+
 /* Achievements Section */
+
 .achievements-list {
     display: flex;
     flex-direction: column;
