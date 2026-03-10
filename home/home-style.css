@@ -185,7 +185,7 @@ body {
 .home-tagline {
     font-size: 32px;
     font-weight: 400;
-    color: #333333;
+    color: #111111;
     letter-spacing: -0.5px;
     line-height: 1.4;
     margin: 0;
@@ -203,7 +203,7 @@ body {
 .home-description {
     font-family: 'Margarine', sans-serif;
     font-size: 17px;
-    color: #555555;
+    color: #1a1a1a;
     line-height: 1.8;
     margin: 0;
     max-width: 750px;
@@ -252,7 +252,7 @@ body {
 .info-label {
     font-size: 11px;
     font-weight: 600;
-    color: #666666;
+    color: #3a3a3a;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -277,7 +277,7 @@ body {
 .tech-label {
     font-size: 13px;
     font-weight: 600;
-    color: #666666;
+    color: #2a2a2a;
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
@@ -370,7 +370,7 @@ body {
 
 .social-label {
     font-size: 14px;
-    color: #666666;
+    color: #1a1a1a;
     font-weight: 500;
     letter-spacing: 0.3px;
 }
@@ -609,7 +609,7 @@ body {
 .contact-intro p {
     font-family: 'Margarine', sans-serif;
     font-size: 16px;
-    color: #333333;
+    color: #111111;
     line-height: 1.6;
 }
 
@@ -652,7 +652,7 @@ body {
 .contact-details p {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #333333;
+    color: #111111;
     margin: 0;
 }
 
@@ -821,7 +821,7 @@ body {
     bottom: 140px;
     left: 50%;
     transform: translateX(-50%);
-    color: #888888;
+    color: #444444;
     font-size: 14px;
     font-family: 'Margarine', sans-serif;
     animation: pulse 2s ease-in-out infinite;
@@ -867,7 +867,7 @@ body {
 .section-subtitle {
     font-family: 'Margarine', sans-serif;
     font-size: 17px;
-    color: #666666;
+    color: #2a2a2a;
     margin: 0;
 }
 
@@ -896,7 +896,7 @@ body {
 .about-text {
     font-family: 'Margarine', sans-serif;
     font-size: 16px;
-    color: #444444;
+    color: #1a1a1a;
     line-height: 1.8;
     margin: 0 0 15px 0;
 }
@@ -954,7 +954,7 @@ body {
 .skill-card p {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #555555;
+    color: #2a2a2a;
     line-height: 1.6;
     margin: 0;
 }
@@ -1004,14 +1004,14 @@ body {
 .edu-details h4 {
     font-size: 15px;
     font-weight: 500;
-    color: #666666;
+    color: #2a2a2a;
     margin: 0 0 10px 0;
 }
 
 .edu-details p {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #555555;
+    color: #1a1a1a;
     line-height: 1.7;
     margin: 0;
 }
@@ -1061,7 +1061,7 @@ body {
 .info-label {
     font-size: 11px;
     font-weight: 600;
-    color: #888888;
+    color: #3a3a3a;
     text-transform: uppercase;
     letter-spacing: 0.8px;
 }
@@ -1100,7 +1100,7 @@ body {
 .value-item p {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #666666;
+    color: #2a2a2a;
     margin: 0;
 }
 
@@ -1209,7 +1209,7 @@ body {
 .project-content p {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #333333;
+    color: #111111;
     line-height: 1.7;
     margin: 0 0 20px 0;
 }
@@ -1334,14 +1334,14 @@ body {
 .timeline-content h4 {
     font-size: 16px;
     font-weight: 500;
-    color: #666666;
+    color: #2a2a2a;
     margin: 0 0 15px 0;
 }
 
 .timeline-content p {
     font-family: 'Margarine', sans-serif;
     font-size: 15px;
-    color: #555555;
+    color: #1a1a1a;
     line-height: 1.7;
     margin: 0 0 15px 0;
 }
@@ -1354,7 +1354,7 @@ body {
 .timeline-highlights li {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #555555;
+    color: #1a1a1a;
     line-height: 1.8;
     margin-bottom: 8px;
 }
@@ -1404,7 +1404,7 @@ body {
 .cert-card p {
     font-family: 'Margarine', sans-serif;
     font-size: 13px;
-    color: #666666;
+    color: #2a2a2a;
     margin: 0;
     line-height: 1.5;
 }
@@ -1485,7 +1485,7 @@ body {
 .location-card p {
     font-family: 'Margarine', sans-serif;
     font-size: 14px;
-    color: #666666;
+    color: #2a2a2a;
     margin: 0;
 }
 
