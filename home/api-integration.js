@@ -3,7 +3,9 @@
  * Fetches projects and experiences from the backend API and dynamically renders them
  */
 
-const API_BASE_URL = 'https://api.taptoquit.me/api';
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000/api'
+    : 'https://api.taptoquit.me/api';
 
 // Fetch and display projects
 async function loadProjects() {
@@ -44,21 +46,28 @@ function renderProjects(projects) {
                 const projectCard = document.createElement('div');
                 projectCard.className = 'project-card';
 
-                // Determine if project has an image or needs an overlay icon
-                const imageStyle = project.imageUrl ?
-                    `background-image: url('${project.imageUrl}'); background-size: cover; background-position: center;` :
-                    '';
+                const images = project.image ? project.image.split('|').map(s => s.trim()).filter(Boolean) : [];
 
-                const overlayIcon = !project.imageUrl ? `
-            <div class="project-overlay">
-                <i class="fa-solid fa-code"></i>
-            </div>
-        ` : '';
+                let imageHtml;
+                if (images.length >= 2) {
+                    // Slideshow for projects with two images
+                    imageHtml = `
+            <div class="project-image kuet-bus-slideshow">
+                <div class="slide-img slide-img-1" style="background-image: url('${images[0]}');"></div>
+                <div class="slide-img slide-img-2" style="background-image: url('${images[1]}');"></div>
+            </div>`;
+                } else if (images.length === 1) {
+                    imageHtml = `
+            <div class="project-image" style="background-image: url('${images[0]}'); background-size: cover; background-position: center;"></div>`;
+                } else {
+                    imageHtml = `
+            <div class="project-image">
+                <div class="project-overlay"><i class="fa-solid fa-code"></i></div>
+            </div>`;
+                }
 
                 projectCard.innerHTML = `
-            <div class="project-image" style="${imageStyle}">
-                ${overlayIcon}
-            </div>
+            ${imageHtml}
             <div class="project-content">
                 <div class="project-info-box">
                     <h3>${project.title}</h3>

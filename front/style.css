@@ -113,7 +113,7 @@ body {
 
 .sub-title {
   color: #000000;
-  font-family: "Margarine", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 18px;
@@ -148,7 +148,7 @@ body {
 
 .swipe-hint p {
   color: #666666;
-  font-family: "Margarine", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -176,5 +176,46 @@ body {
   50% {
     transform: translateX(-50%) translateY(-10px);
   }
+}
+
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 1024px) {
+    .portfolio-title .personal { font-size: 110px; }
+    .portfolio-title .portfolio { font-size: 95px; }
+    .portfolio-title { font-size: 65px; }
+    .name { font-size: 40px; }
+}
+
+@media (max-width: 768px) {
+    body { background-attachment: scroll; }
+
+    .portfolio-title .personal { font-size: 78px; }
+    .portfolio-title .portfolio { font-size: 66px; }
+    .portfolio-title { font-size: 48px; }
+    .name { font-size: 30px; letter-spacing: 2px; }
+    .sub-title { font-size: 15px; }
+    .divider { margin: 22px auto; }
+}
+
+@media (max-width: 480px) {
+    .portfolio-title .personal { font-size: 54px; }
+    .portfolio-title .portfolio { font-size: 46px; }
+    .portfolio-title { font-size: 34px; }
+    .name { font-size: 22px; letter-spacing: 1.5px; }
+    .sub-title { font-size: 13px; }
+    .divider { margin: 16px auto; width: 44px; }
+    .swipe-hint { bottom: 28px; }
+    .swipe-hint p { font-size: 13px; }
+    .swipe-hint i { font-size: 20px; }
+}
+
+@media (max-width: 360px) {
+    .portfolio-title .personal { font-size: 42px; }
+    .portfolio-title .portfolio { font-size: 36px; }
+    .portfolio-title { font-size: 26px; }
+    .name { font-size: 18px; letter-spacing: 1px; }
+    .sub-title { font-size: 12px; }
 }
 

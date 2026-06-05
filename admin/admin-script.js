@@ -17,7 +17,9 @@
 // ============ CONFIGURATION ============
 
 // Backend API base URL
-const API_URL = 'https://api.taptoquit.me/api';
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000/api'
+    : 'https://api.taptoquit.me/api';
 
 // Global state variables
 let authToken = localStorage.getItem('adminToken'); // JWT token for authenticated requests
@@ -283,6 +285,10 @@ function showModal() {
                 <input type="text" name="technologies" id="technologies" placeholder="React, Node.js, MongoDB">
             </div>
             <div class="form-group">
+                <label>Image Path / URL <small style="font-weight:normal;opacity:0.7;">(use | to add a second image for slideshow)</small></label>
+                <input type="text" name="image" id="image" placeholder="../Assets/myImage.jpeg  or  img1.jpeg|img2.jpeg">
+            </div>
+            <div class="form-group">
                 <label>Live URL</label>
                 <input type="url" name="liveUrl" id="liveUrl">
             </div>
@@ -402,6 +408,31 @@ async function editItem(id, type) {
     editingId = id;
     currentSection = type === 'project' ? 'projects' : 'experiences';
     showModal();
+
+    const endpoint = type === 'project' ? 'projects' : 'experiences';
+    try {
+        const response = await fetch(`${API_URL}/${endpoint}/${id}`, {
+            headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const item = await response.json();
+
+        if (type === 'project') {
+            document.getElementById('title').value = item.title || '';
+            document.getElementById('description').value = item.description || '';
+            document.getElementById('technologies').value = (item.technologies || []).join(', ');
+            document.getElementById('image').value = item.image || '';
+            document.getElementById('liveUrl').value = item.liveUrl || '';
+            document.getElementById('githubUrl').value = item.githubUrl || '';
+        } else {
+            document.getElementById('role').value = item.role || '';
+            document.getElementById('company').value = item.company || '';
+            document.getElementById('duration').value = item.duration || '';
+            document.getElementById('description').value = item.description || '';
+            document.getElementById('technologies').value = (item.technologies || []).join(', ');
+        }
+    } catch (error) {
+        console.error('Error loading item for edit:', error);
+    }
 }
 
 // Delete Item
